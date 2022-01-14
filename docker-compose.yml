@@ -1,11 +1,22 @@
 version: "3"
 
 services:
+  db:
+    container_name: 'postgres'
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: root
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/
+    restart: always
   dj:
     container_name: dj
     build: django
+    restart: always
     command: python manage.py runserver 0.0.0.0:80
     volumes:
       - ./django:/code
     ports:
       - "80:80"
+    depends_on:
+      - db
