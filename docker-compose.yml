@@ -17,13 +17,13 @@ services:
     volumes:
       - ./django:/code
     ports:
-      - "80:80"
+      - "8081:80"
     depends_on:
       - db
 
-  ng:
-    container_name: ng
-    build: angular
-    restart: always
-    ports:
-      - "8080:80"
+  # ng:
+  #   container_name: ng
+  #   build: angular
+  #   restart: always
+  #   ports:
+  #     - "8080:80"
