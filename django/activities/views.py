@@ -1,8 +1,8 @@
 from .models import Activity
-from .serializers import ActivitySerializer, UserSerializer
+from .serializers import ActivitySerializer
 from .permissions import IsOwnerOrReadOnly
-from django.contrib.auth.models import User
-from rest_framework import generics, permissions, viewsets
+
+from rest_framework import permissions, viewsets
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -16,14 +16,6 @@ def api_root(request, format=None):
     })
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    This viewset automatically provides `list` and `retrieve` actions.
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
 class ActivityViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
@@ -33,31 +25,10 @@ class ActivityViewSet(viewsets.ModelViewSet):
     """
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly]
+    permision_classes = [permissions.IsAuthenticated, ]
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+    #                       IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
         
-# class ActivityList(generics.ListCreateAPIView):
-#     queryset = Activity.objects.all()
-#     serializer_class = ActivitySerializer
-#     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    
-#     def perform_create(self, serializer):
-#         serializer.save(owner=self.request.user)
-
-
-# class ActivityDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Activity.objects.all()
-#     serializer_class = ActivitySerializer
-#     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
-
-# class UserList(generics.ListAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-
-
-# class UserDetail(generics.RetrieveAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer

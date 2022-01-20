@@ -23,9 +23,3 @@ class ActivitySerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-class UserSerializer(serializers.ModelSerializer):
-    activities = serializers.PrimaryKeyRelatedField(many=True, queryset=Activity.objects.all())
-
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'activities']

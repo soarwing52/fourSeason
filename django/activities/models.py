@@ -4,7 +4,6 @@ from datetime import date
 
 # Create the Task class to describe the model.
 class Activity(models.Model):
-    """Stores a task."""
     title = models.CharField(max_length=50)
     content = models.CharField(max_length=50)
     owner = models.ForeignKey('auth.User', related_name='activities', on_delete=models.CASCADE, blank=True, null=True)
