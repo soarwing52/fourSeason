@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivityTableDataSource, ActivityTableItem } from './activity-table-datasource';
+import {ActivityService} from '../activity-service/activity.service';
 
 @Component({
   selector: 'app-activity-table',
@@ -18,7 +19,11 @@ export class ActivityTableComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
 
-  constructor() {
+  constructor(private _servcie: ActivityService) {
+    this._servcie.GetActivity().subscribe(data => {
+      console.log(data);
+    })
+
     this.dataSource = new ActivityTableDataSource();
   }
 
