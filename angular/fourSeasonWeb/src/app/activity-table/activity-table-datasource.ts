@@ -6,33 +6,58 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface ActivityTableItem {
-  name: string;
-  id: number;
+  title: string;
+  content: string;
+  created_on: string;
+  due_date: string;
+  get_leaders: string;
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: ActivityTableItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
-];
+const EXAMPLE_DATA: ActivityTableItem[] =  [
+  {
+      "title": "帖比倫",
+      "content": "行程內容",
+      "created_on": "2022-01-21",
+      "due_date": "2022-01-21",
+      "get_leaders": "admin"
+  },
+  {
+      "title": "二子山",
+      "content": "溫泉野溪",
+      "created_on": "2022-01-21",
+      "due_date": "2022-01-21",
+      "get_leaders": "admin"
+  },
+  {
+      "title": "拉卡溫泉",
+      "content": "放鬆泡湯",
+      "created_on": "2022-01-21",
+      "due_date": "2022-01-21",
+      "get_leaders": ""
+  },
+  {
+      "title": "秀巒",
+      "content": "嚮導訓練",
+      "created_on": "2022-01-21",
+      "due_date": "2022-01-21",
+      "get_leaders": ""
+  },
+  {
+      "title": "進階營",
+      "content": "訓練",
+      "created_on": "2022-01-21",
+      "due_date": "2022-01-21",
+      "get_leaders": ""
+  },
+  {
+      "title": "進階營2",
+      "content": "訓練",
+      "created_on": "2022-01-21",
+      "due_date": "2022-01-21",
+      "get_leaders": ""
+  }
+]
 
 /**
  * Data source for the ActivityTable view. This class should
@@ -40,7 +65,7 @@ const EXAMPLE_DATA: ActivityTableItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class ActivityTableDataSource extends DataSource<ActivityTableItem> {
-  data: ActivityTableItem[] = EXAMPLE_DATA;
+  data: ActivityTableItem[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
@@ -97,8 +122,8 @@ export class ActivityTableDataSource extends DataSource<ActivityTableItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'title': return compare(a.title, b.title, isAsc);
+        case 'get_leaders': return compare(+a.get_leaders, +b.get_leaders, isAsc);
         default: return 0;
       }
     });

@@ -11,6 +11,6 @@ export class ActivityService {
 
   GetActivity(){
     const connectUrl = `${this.baseUrl}/activities/activities/`;
-    return this.http.get(connectUrl);
+    return this.http.get<any>(connectUrl);
   }
 }
