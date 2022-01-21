@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import RegisterView, UserViewSet, LoginView
 from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
@@ -8,6 +8,7 @@ router = DefaultRouter()
 router.register(r'users', UserViewSet)
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('register', RegisterView.as_view()),
     path('login', LoginView.as_view()),
     path('get-token/', obtain_jwt_token),
@@ -19,5 +20,8 @@ user_list = UserViewSet.as_view({
     'get': 'list'
 })
 user_detail = UserViewSet.as_view({
-    'get': 'retrieve'
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
 })

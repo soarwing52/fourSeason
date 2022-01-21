@@ -15,11 +15,10 @@ class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=255)
     first_name = serializers.CharField(max_length=255)
     last_name = serializers.CharField(max_length=255)
-    activities = serializers.PrimaryKeyRelatedField(many=True, required=False, queryset=Activity.objects.all(), allow_null=True)
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'password','email', 'first_name', 'last_name', 'activities']
+        fields = ['id', 'username', 'password','email', 'first_name', 'last_name']
 
     def validate(self, attrs):
         if User.objects.filter(email=attrs['email']).exists():
@@ -27,7 +26,10 @@ class UserSerializer(serializers.ModelSerializer):
         return super().validate(attrs)
 
     def create(self, validated_data):
-        return User.objects.create(**validated_data)
+        user = User.objects.create(**validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
     
 
 class LoginSerializer(serializers.ModelSerializer):

@@ -5,15 +5,16 @@ from django.conf import settings
 
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
-from rest_framework import status, viewsets
+from rest_framework import status, viewsets, permissions
 
 import jwt
 from .serializers import UserSerializer, LoginSerializer
 
 # Create your views here.
 class RegisterView(GenericAPIView):
+    serializer_class = UserSerializer
     def post(self, request):
-        serializer = UserSerializer(data=request.data)
+        serializer_class = UserSerializer(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -43,9 +44,23 @@ class LoginView(GenericAPIView):
         return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list` and `retrieve` actions.
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return []
+        return super().get_permissions()
+
+    def post(self, request):
+        serializer_class = UserSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
