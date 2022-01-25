@@ -9,11 +9,15 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         const authToken = this.authService.getToken();
-        req = req.clone({
-            setHeaders: {
-                Authorization: "JWT " + authToken
-            }
-        });
+
+        if(authToken != null) {
+            req = req.clone({
+                setHeaders: {
+                    Authorization: "JWT " + authToken
+                }
+            });
+        }
+
         return next.handle(req);
     }
 }

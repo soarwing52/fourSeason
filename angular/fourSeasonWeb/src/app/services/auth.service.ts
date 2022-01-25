@@ -31,11 +31,12 @@ export class AuthService {
 
   // Sign-in
   signIn(user: User) {
-    return this.http.post<any>(`${this.endpoint}/api/auth/get-token/`, user)
+    console.log(user);
+    return this.http.post<any>(`${this.endpoint}/api/auth/login/`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token)
-        console.log(res);
-        this.router.navigate(['']);
+        localStorage.setItem('username', res.user["username"])
+        this.router.navigate(["/"])
       })
   }
 
@@ -49,10 +50,9 @@ export class AuthService {
   }
 
   doLogout() {
-    let removeToken = localStorage.removeItem('access_token');
-    if (removeToken == null) {
-      this.router.navigate(['log-in']);
-    }
+    localStorage.clear();
+    console.log("log")
+    this.router.navigate(["log-in"]);
   }
 
   // User profile

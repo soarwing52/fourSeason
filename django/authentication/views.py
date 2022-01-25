@@ -32,6 +32,7 @@ class LoginView(GenericAPIView):
         username = data.get('username', '')
         password = data.get('password', '')
 
+        print(data)
         user = auth.authenticate(username=username, password=password)
 
         if user:

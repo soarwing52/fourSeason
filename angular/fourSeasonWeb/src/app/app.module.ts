@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ActivityTableComponent } from './activity-table/activity-table.component';
+import { ActivityTableComponent } from './tables/activity-table/activity-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -15,6 +15,8 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthInterceptor } from './components/authconfig.interceptor';
+import { UserStatusComponent } from './components/user-status/user-status.component';
+import { WelcomeComponent } from './tables/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AuthInterceptor } from './components/authconfig.interceptor';
     ActivityTableComponent,
     SigninComponent,
     SignupComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserStatusComponent,
+    WelcomeComponent
   ],
   imports: [
     AppRoutingModule,

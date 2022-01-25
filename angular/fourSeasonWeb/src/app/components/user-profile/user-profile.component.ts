@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute } from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,7 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() { }
+  currentUser = {
+    "name": "new",
+    "email": "email@example.com"
+  };
+
+  constructor(
+    public authService: AuthService,
+    private actRoute: ActivatedRoute
+  ) {
+    this.currentUser["name"] = "name";
+    this.currentUser["email"] = "email";
+    let id = this.actRoute.snapshot.paramMap.get('id');
+    console.log(id);
+    // this.authService.getUserProfile(id).subscribe(res => {
+    //   this.currentUser = {
+    //     "name": "new",
+    //     "email": "email@example.com"
+    //   };
+    // })
+  }
 
   ngOnInit(): void {
   }
