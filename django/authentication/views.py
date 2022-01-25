@@ -22,8 +22,11 @@ class RegisterView(GenericAPIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class LoginView(GenericAPIView):
     serializer_class = LoginSerializer
+    permission_classes = [permissions.AllowAny]
+    
     def post(self, request):
         data = request.data
         username = data.get('username', '')

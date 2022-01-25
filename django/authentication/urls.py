@@ -9,8 +9,8 @@ router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('register', RegisterView.as_view()),
-    path('login', LoginView.as_view()),
+    path('register/', RegisterView.as_view()),
+    path('login/', LoginView.as_view()),
     path('get-token/', obtain_jwt_token),
     path('refresh-token/', refresh_jwt_token),
     path('verify-token/', verify_jwt_token),
