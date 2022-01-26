@@ -8,56 +8,14 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 export interface ActivityTableItem {
   title: string;
   content: string;
-  created_on: string;
-  due_date: string;
   get_leaders: string;
+  get_participants: string;
+  trip_date_start: string;
+  trip_date_end: string;
+  get_activity_type_display: string;
+  get_activity_requirements_display: string;
+  activity_requirements_count: string;
 }
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: ActivityTableItem[] =  [
-  {
-      "title": "帖比倫",
-      "content": "行程內容",
-      "created_on": "2022-01-21",
-      "due_date": "2022-01-21",
-      "get_leaders": "admin"
-  },
-  {
-      "title": "二子山",
-      "content": "溫泉野溪",
-      "created_on": "2022-01-21",
-      "due_date": "2022-01-21",
-      "get_leaders": "admin"
-  },
-  {
-      "title": "拉卡溫泉",
-      "content": "放鬆泡湯",
-      "created_on": "2022-01-21",
-      "due_date": "2022-01-21",
-      "get_leaders": ""
-  },
-  {
-      "title": "秀巒",
-      "content": "嚮導訓練",
-      "created_on": "2022-01-21",
-      "due_date": "2022-01-21",
-      "get_leaders": ""
-  },
-  {
-      "title": "進階營",
-      "content": "訓練",
-      "created_on": "2022-01-21",
-      "due_date": "2022-01-21",
-      "get_leaders": ""
-  },
-  {
-      "title": "進階營2",
-      "content": "訓練",
-      "created_on": "2022-01-21",
-      "due_date": "2022-01-21",
-      "get_leaders": ""
-  }
-]
 
 /**
  * Data source for the ActivityTable view. This class should

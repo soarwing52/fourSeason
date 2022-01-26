@@ -28,6 +28,14 @@
   border-color: #24292e;
 }
 
+.app-activity-table{
+  width: 1500px;
+  flex: 1;
+  background-color: #24292e;
+  margin: 100px;
+  border: 10px solid;
+  border-color: #24292e;
+}
   .spacer {
     flex: 1;
   }

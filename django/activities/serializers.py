@@ -5,7 +5,18 @@ from django.contrib.auth.models import User
 class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
-        fields = ('title', 'content', 'created_on',  'due_date', 'get_leaders')
+        fields = (
+            'title', 
+            'content', 
+            'created_on', 
+            'get_leaders',
+            'get_participants', 
+            'trip_date_start', 
+            'trip_date_end', 
+            'get_activity_type_display', 
+            'get_activity_requirements_display', 
+            'activity_requirements_count'
+            )
         owner = serializers.ReadOnlyField(source='owner.username')
 
     def create(self, validated_data):

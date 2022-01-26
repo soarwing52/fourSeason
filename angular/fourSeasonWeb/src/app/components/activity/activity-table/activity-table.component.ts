@@ -15,14 +15,24 @@ export class ActivityTableComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<ActivityTableItem>;
   dataSource: ActivityTableDataSource;
+  leaders : string[] = [];
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['title', 'content'];
+  displayedColumns = [
+    'title',
+    'content',
+    'get_leaders',
+    'trip_date',
+    'get_activity_type_display',
+    'activity_requirements',
+  ];
 
   constructor(private _servcie: ActivityService) {
     this.dataSource = new ActivityTableDataSource();
+  }
+
+  ngAfterViewInit(): void {
     this._servcie.GetActivity().subscribe(data => {
-      console.log(data.results);
       this.dataSource = new ActivityTableDataSource();
       this.dataSource.data = data.results;
       this.dataSource.sort = this.sort;
@@ -31,9 +41,7 @@ export class ActivityTableComponent implements AfterViewInit {
     })
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  splitUser(input: string){
+    return input.split(" ");
   }
 }
