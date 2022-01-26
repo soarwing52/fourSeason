@@ -4,19 +4,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ActivityTableComponent } from './tables/activity-table/activity-table.component';
+import { ActivityTableComponent } from './components/activity/activity-table/activity-table.component';
+import {MatButtonModule} from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {MatMenuModule} from '@angular/material/menu';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SigninComponent } from './components/signin/signin.component';
-import { SignupComponent } from './components/signup/signup.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { AuthInterceptor } from './components/authconfig.interceptor';
-import { UserStatusComponent } from './components/user-status/user-status.component';
-import { WelcomeComponent } from './tables/welcome/welcome.component';
+import { SigninComponent } from './auth-components/signin/signin.component';
+import { SignupComponent } from './auth-components/signup/signup.component';
+import { UserProfileComponent } from './auth-components/user-profile/user-profile.component';
+import { AuthInterceptor } from './auth-components/authconfig.interceptor';
+import { UserStatusComponent } from './auth-components/user-status/user-status.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ActivityComponent } from './components/activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,9 @@ import { WelcomeComponent } from './tables/welcome/welcome.component';
     SignupComponent,
     UserProfileComponent,
     UserStatusComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    NavbarComponent,
+    ActivityComponent
   ],
   imports: [
     AppRoutingModule,
@@ -34,8 +40,10 @@ import { WelcomeComponent } from './tables/welcome/welcome.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
+    MatMenuModule,
     MatSortModule,
     ReactiveFormsModule,
   ],

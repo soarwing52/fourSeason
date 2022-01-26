@@ -1,0 +1,26 @@
+<section>
+    <div class="example-button-row">
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="aboutMenu">關於四季</button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">活動行程</button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">溯溪知識</button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">四季史跡</button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">留言討論</button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">會員專區</button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">幹部功能</button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">常見問答</button>
+    </div>
+</section>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+
+<mat-menu #aboutMenu="matMenu">
+  <button mat-menu-item>宗旨章程</button>
+  <button mat-menu-item>歷史沿革</button>
+  <button mat-menu-item>重要溯行</button>
+  <button mat-menu-item>語音介紹</button>
+  <button mat-menu-item>紀念影片</button>
+  <button mat-menu-item>歷屆幹部</button>
+</mat-menu>

@@ -1,4 +1,4 @@
-<div class="" *ngIf="isLoggedIn">
+<div class="" *ngIf="isLoggedIn; else LogInButton">
     <table>
         <tr>
             <th>夥伴 {{this.username}} ，歡迎您！</th>
@@ -6,6 +6,6 @@
         </tr>
     </table>
 </div>
-<div class="" *ngIf="!isLoggedIn">
+<ng-template class="" #LogInButton>
     <button (click)="LogIn()" class="btn btn-info">登入</button>
-</div>
+</ng-template>

@@ -4,7 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { User } from '../components/user';
+import { User } from '../auth-components/user';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,6 @@ export class AuthService {
 
   // Sign-in
   signIn(user: User) {
-    console.log(user);
     return this.http.post<any>(`${this.endpoint}/api/auth/login/`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token)
@@ -51,8 +50,7 @@ export class AuthService {
 
   doLogout() {
     localStorage.clear();
-    console.log("log")
-    this.router.navigate(["log-in"]);
+    this.router.navigate(["home"]);
   }
 
   // User profile

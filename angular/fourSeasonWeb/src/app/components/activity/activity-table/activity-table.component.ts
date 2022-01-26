@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivityTableDataSource, ActivityTableItem } from './activity-table-datasource';
-import {ActivityService} from '../../services/activity.service';
+import {ActivityService} from '../../../services/activity.service';
 
 @Component({
   selector: 'app-activity-table',
