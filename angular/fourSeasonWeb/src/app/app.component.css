@@ -28,8 +28,12 @@
   border-color: #24292e;
 }
 
+.btn {
+  margin: 10px;
+}
+
 .app-activity-table{
-  width: 1500px;
+  max-width: 1500px;
   flex: 1;
   background-color: #24292e;
   margin: 100px;

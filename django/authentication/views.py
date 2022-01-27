@@ -13,14 +13,15 @@ from .serializers import UserSerializer, LoginSerializer
 # Create your views here.
 class RegisterView(GenericAPIView):
     serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
     def post(self, request):
         serializer_class = UserSerializer(data=request.data)
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        if serializer_class.is_valid():
+            serializer_class.save()
+            return Response(serializer_class.data, status=status.HTTP_201_CREATED)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer_class.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LoginView(GenericAPIView):

@@ -4,11 +4,19 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivityTableDataSource, ActivityTableItem } from './activity-table-datasource';
 import {ActivityService} from '../../../services/activity.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-activity-table',
   templateUrl: './activity-table.component.html',
-  styleUrls: ['./activity-table.component.css']
+  styleUrls: ['./activity-table.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ActivityTableComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -25,6 +33,7 @@ export class ActivityTableComponent implements AfterViewInit {
     'trip_date',
     'get_activity_type_display',
     'activity_requirements',
+    'activity_apply'
   ];
 
   constructor(private _servcie: ActivityService) {

@@ -1,7 +1,7 @@
 <section>
     <div class="example-button-row">
         <button mat-flat-button color="primary" [matMenuTriggerFor]="aboutMenu">關於四季</button>
-        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">活動行程</button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="activityMenu">活動行程</button>
         <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">溯溪知識</button>
         <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">四季史跡</button>
         <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">留言討論</button>
@@ -23,4 +23,11 @@
   <button mat-menu-item>語音介紹</button>
   <button mat-menu-item>紀念影片</button>
   <button mat-menu-item>歷屆幹部</button>
+</mat-menu>
+
+<mat-menu #activityMenu="matMenu">
+  <button mat-menu-item>營隊報名</button>
+  <button mat-menu-item>會內行程報名</button>
+  <button mat-menu-item [matMenuTriggerFor]="menu">領隊功能</button>
+  <button mat-menu-item [matMenuTriggerFor]="menu">查詢與統計</button>
 </mat-menu>

@@ -39,6 +39,14 @@ export class AuthService {
       })
   }
 
+  registerUser(user: User) {
+    let url = `${this.endpoint}/api/auth/register/`
+    return this.http.post<any>(url, user)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
   getToken() {
     return localStorage.getItem('access_token');
   }

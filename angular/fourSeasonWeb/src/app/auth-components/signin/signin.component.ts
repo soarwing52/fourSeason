@@ -31,4 +31,8 @@ export class SigninComponent implements OnInit {
   loginUser() {
     this.authService.signIn(this.signinForm.value)
   }
+
+  toRegister() {
+    this.authService.router.navigate(['/sign-up']);
+  }
 }
