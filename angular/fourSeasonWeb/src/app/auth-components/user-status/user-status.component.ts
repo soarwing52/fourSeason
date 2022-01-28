@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-status',
@@ -11,12 +11,11 @@ export class UserStatusComponent implements OnInit {
   username: string | null = "";
 
   constructor(private authService: AuthService) {
-   }
+  }
 
   ngOnInit(): void {
     this.authService.router.events.subscribe(event => {
       if (event.constructor.name === "NavigationEnd") {
-        console.log("nav end")
         this.isLoggedIn = this.authService.isLoggedIn;
         this.username = localStorage.getItem('username');
       }

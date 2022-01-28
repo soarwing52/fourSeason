@@ -15,6 +15,7 @@ export interface ActivityTableItem {
   get_activity_type_display: string;
   get_activity_requirements_display: string;
   activity_requirements_count: string;
+  isExpanded: boolean;
 }
 
 /**
@@ -42,7 +43,7 @@ export class ActivityTableDataSource extends DataSource<ActivityTableItem> {
       // stream for the data-table to consume.
       return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
         .pipe(map(() => {
-          return this.getPagedData(this.getSortedData([...this.data ]));
+          return this.getPagedData(this.getSortedData([...this.data]));
         }));
     } else {
       throw Error('Please set the paginator and sort on the data source before connecting.');
@@ -53,7 +54,7 @@ export class ActivityTableDataSource extends DataSource<ActivityTableItem> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect(): void {}
+  disconnect(): void { }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,

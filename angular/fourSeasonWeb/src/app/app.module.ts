@@ -9,8 +9,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { MatListModule } from '@angular/material/list'
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SigninComponent } from './auth-components/signin/signin.component';
@@ -41,6 +43,7 @@ import { ActivityComponent } from './components/activity/activity.component';
     FormsModule,
     HttpClientModule,
     MatButtonModule,
+    MatListModule,
     MatTableModule,
     MatPaginatorModule,
     MatMenuModule,

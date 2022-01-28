@@ -1,5 +1,5 @@
 <div class="mat-elevation-z8 full-width-table">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
+  <table mat-table class="full-width-table" matSort aria-label="rows" multiTemplateDataRows>
     <ng-container matColumnDef="trip_date">
       <th class="activity-header" mat-header-cell *matHeaderCellDef mat-sort-header>日期</th>
       <td mat-cell *matCellDef="let row">
@@ -37,7 +37,7 @@
         </table>
       </th>
       <td mat-cell *matCellDef="let row">
-        <table >
+        <table>
           <tr>{{row.get_activity_type_display}}</tr>
           <tr>{{row.get_activity_requirements_display}}</tr>
         </table>
@@ -51,8 +51,25 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>報名</th>
       <td mat-cell *matCellDef="let row"><button class="btn btn-primary">報名</button></td>
     </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+        <div class="row student-element-detail" [@detailExpand]="row.isExpanded ? 'expanded' : 'collapsed'">
+          <div mat-subheader>{{row.content}}</div>
+          <div>
+            <table class="table">
+              <tr>{{ row.content }}</tr>
+            </table>
+          </div>
+        </div>
+
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="student-element-row"
+      [class.student-expanded-row]="row.isExpanded" (click)="this.toggleRow(row);"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="student-detail-row"></tr>
   </table>
 
   <mat-paginator #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="2"
