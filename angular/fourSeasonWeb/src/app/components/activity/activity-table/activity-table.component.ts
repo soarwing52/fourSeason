@@ -27,7 +27,6 @@ export class ActivityTableComponent implements AfterViewInit {
 
   displayedColumns = [
     'title',
-    'content',
     'get_leaders',
     'trip_date',
     'get_activity_type_display',

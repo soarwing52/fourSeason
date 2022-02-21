@@ -37,9 +37,15 @@ tr.student-element-row:not(.student-expanded-row):active {
 .student-element-detail {
   overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: center;
-  background-color: #e1e1e1;
+  background-color: #fcf7f7;
   box-shadow: inset 2px 3px 8px #c1c1c1;
   border-radius: 8px;
 }
+
+.activity-content div{
+  width: 100%;
+  text-align: left;
+}
+
